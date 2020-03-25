@@ -1,0 +1,22 @@
+all:
+  vars:
+    username: admin
+    password: admin
+    device_type: cisco_ios
+  groups:
+    dev-net: 
+      hosts:
+        - hostname: IOS-XE1
+          host: ios-xe-mgmt-latest.cisco.com
+        - hostname: IOS-XE2
+          host: ios-xe-mgmt.cisco.com
+      vars:
+        username: developer
+        password: C1sco12345
+        port: 8181
+    foo:
+      hosts:
+        - hostname: foo1
+          host: 192.168.1.201
+      vars:
+        password: cisco
