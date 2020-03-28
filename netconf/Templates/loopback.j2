@@ -1,0 +1,24 @@
+<config>
+	<native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+	    <interface>
+	    {% for interface in interfaces %}
+            <Loopback>
+	           <name>{{interface.number}}</name>
+	           {% if interface.description is defined %}
+	           <description>{{interface.description}}</description>
+	           {% endif %}
+	           {% if interface.ip is defined %}
+	           <ip>
+	              <address>
+	                 <primary>
+	                    <address>{{interface.ip}}</address>
+	                    <mask>{{interface.mask}}</mask>
+	                 </primary>
+	              </address>
+	           </ip>
+	           {% endif %}
+	        </Loopback>
+	    {% endfor %}
+	    </interface>
+	</native>
+</config>

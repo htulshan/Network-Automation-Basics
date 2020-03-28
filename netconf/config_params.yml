@@ -1,0 +1,21 @@
+'IOS-XE1':
+    'interfaces':
+        - 'number': '1245'
+          'description': 'testing netconf'
+          'ip' : '192.168.111.1'
+          'mask' : '255.255.255.0'
+
+        - 'number': '1246'
+          'ip': '192.168.112.1'
+          'mask': '255.255.255.0'
+
+'IOS-XE2':
+    'interfaces':
+        - 'number': '1245'
+          'description': 'testing netconf'
+          'ip' : '192.168.113.1'
+          'mask' : '255.255.255.0'
+
+        - 'number': '1246'
+          'ip': '192.168.114.1'
+          'mask': '255.255.255.0'

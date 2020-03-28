@@ -1,0 +1,43 @@
+all:
+  vars:
+    username: admin
+    password: admin
+    device_type: cisco_ios
+    ssh_port: 22
+  groups:
+    dev-net: 
+      hosts:
+        - hostname: IOS-XE1
+          host: ios-xe-mgmt-latest.cisco.com
+        - hostname: IOS-XE2
+          host: ios-xe-mgmt.cisco.com
+      vars:
+        username: developer
+        password: C1sco12345
+        ssh_port: 8181
+        netconf_port: 10000
+        restconf_port: 9443
+    local-machine:
+      hosts:
+        - hostname: R1
+          host: 192.168.134.201
+        - hostname: R2
+          host: 192.168.134.202
+        - hostname: R3
+          host: 192.168.134.203
+        - hostname: R4
+          host: 192.168.134.204
+        - hostname: R5
+          host: 192.168.134.205
+        - hostname: R6
+          host: 192.168.134.206
+        - hostname: R7
+          host: 192.168.134.207
+        - hostname: R8
+          host: 192.168.134.208
+        - hostname: R9
+          host: 192.168.134.209
+        - hostname: R10
+          host: 192.168.134.210
+      vars:
+        password: cisco

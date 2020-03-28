@@ -1,0 +1,79 @@
+yang github for yang models
+
+to parse tree pyang
+pyang -f tree <file>
+
+to parse html pyang
+pyang -f jstree ietf-interfaces.yang > test.html
+open browser for :
+file:///home/htulshan/Documents/gitprojects/yang/vendor/cisco/xe/16111/test.html
+
+cisco dev-net course for partial theory
+
+for netconf example refer the RFC : https://tools.ietf.org/html/rfc6241
+
+ncclinet doc : https://ncclient.readthedocs.io/en/latest/manager.html + github page
+
+command to check netconf on device:
+ssh -s developer@ios-xe-mgmt-latest.cisco.com -p 10000 netconf
+
+hello msg format:
+ <?xml version="1.0" encoding="UTF-8"?>
+ <hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <capabilities>
+   <capability>urn:ietf:params:netconf:base:1.0</capability>
+ </capabilities>
+   </hello>]]>]]>
+
+
+to close the session:
+<?xml version="1.0" encoding="UTF-8"?>
+ <rpc message-id="1239123" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <close-session />
+ </rpc>
+ ]]>]]>
+
+
+
+To get config:
+<?xml version="1.0" encoding="UTF-8"?>
+ <rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <get-config>
+ <source>
+ <running/>
+ </source>
+ </get-config>
+ </rpc>]]>]]>
+
+
+to edit config :
+<?xml version="1.0" encoding="UTF-8"?>
+ <rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+ <edit-config>
+   <target>
+    <running/>
+   </target>
+   <config>
+     <native xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-native">
+       <hostname>csr1000v-1</hostname>
+         <interface>
+           <Loopback>
+             <name>2020</name>
+             <description>Created with Netconf</description>
+             <ip>
+                <address>
+                   <primary>
+                      <address>172.16.1.1</address>
+                      <mask>255.255.255.255</mask>
+                   </primary>
+                </address>
+             </ip>
+          </Loopback>
+        </interface>
+     </native>
+   </config>
+ </edit-config>
+ </rpc>]]>]]>
+
+
+
