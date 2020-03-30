@@ -5,6 +5,56 @@ pyang -f tree <file>
 
 to parse html pyang
 pyang -f jstree ietf-interfaces.yang > test.html
+
+
+to parse in xml format:
+03:59 $ pyang -f sample-xml-skeleton ietf-interfaces.yang
+<?xml version='1.0' encoding='UTF-8'?>
+<data xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+    <interface>
+      <name/>
+      <description/>
+      <type/>
+      <link-up-down-trap-enable/>
+    </interface>
+  </interfaces>
+  <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+    <interface>
+      <name/>
+      <type/>
+      <admin-status/>
+      <oper-status/>
+      <last-change/>
+      <if-index/>
+      <phys-address/>
+      <higher-layer-if>
+        <!-- # entries: 0.. -->
+      </higher-layer-if>
+      <lower-layer-if>
+        <!-- # entries: 0.. -->
+      </lower-layer-if>
+      <speed/>
+      <statistics>
+        <discontinuity-time/>
+        <in-octets/>
+        <in-unicast-pkts/>
+        <in-broadcast-pkts/>
+        <in-multicast-pkts/>
+        <in-discards/>
+        <in-errors/>
+        <in-unknown-protos/>
+        <out-octets/>
+        <out-unicast-pkts/>
+        <out-broadcast-pkts/>
+        <out-multicast-pkts/>
+        <out-discards/>
+        <out-errors/>
+      </statistics>
+    </interface>
+  </interfaces-state>
+</data>
+
 open browser for :
 file:///home/htulshan/Documents/gitprojects/yang/vendor/cisco/xe/16111/test.html
 

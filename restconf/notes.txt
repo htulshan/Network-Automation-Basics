@@ -1,0 +1,5 @@
+to extreact info from device
+
+
+url : https://{host}:{port}/restconf/data/module:container
+example : https://{{host}}:{{port}}/restconf/data/Cisco-IOS-XE-device-hardware-oper:device-hardware-data

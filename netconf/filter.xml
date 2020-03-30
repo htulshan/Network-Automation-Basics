@@ -1,0 +1,10 @@
+<filter>
+    <device-hardware-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-device-hardware-oper">
+        <device-hardware>
+            <device-inventory>
+                <part-number/>
+                <serial-number/>
+            </device-inventory>
+        </device-hardware>
+    </device-hardware-data>
+</filter>
