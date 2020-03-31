@@ -2,6 +2,7 @@
   <dictionary name="htulshan">
     <words>
       <w>cisco</w>
+      <w>endfor</w>
       <w>hostkey</w>
       <w>loopback</w>
       <w>netconf</w>

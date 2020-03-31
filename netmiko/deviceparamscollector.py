@@ -1,6 +1,10 @@
 import yaml
 
 
+class SiteError(Exception):
+    pass
+
+
 def collect_yaml_data(path):
     """
 
@@ -40,4 +44,4 @@ def collect_site_data(yaml_data, site="all"):
 
             }
     else:
-        raise KeyError("Unable to locate the site in inventory")
+        raise SiteError("Unable to locate the site in inventory")
