@@ -1,0 +1,34 @@
+- name: Run show commands on devices
+  hosts: SPOKE2
+
+  vars:
+    ansible_connection: ssh #changes the variable to ssh which was network_cli according to inventory file.
+
+  tasks:
+
+    - name: run show clock
+      raw: show clock
+      register: show_clock_result #to save the output of the command to a variable
+
+    - name: debug run show clock
+      debug: var=show_clock_result.stdout_lines #to display a variable on the command line
+      when: show_clock_result.changed #to perform the above action in 'when' is true
+
+    - name: run show version
+      raw: show version
+
+    - name: run show arp
+      raw: show ip arp
+
+- name: run gather interface config
+  hosts: SPOKE3
+
+  vars:
+    ansible_connection: ssh
+
+  tasks:
+
+    - name: run show cdp n
+      raw: show cdp n
+
+

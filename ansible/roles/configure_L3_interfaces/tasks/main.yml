@@ -1,0 +1,15 @@
+- name: gather_facts
+  ios_facts:
+    gather_subset: all
+
+- name: configure_phy_l3_interfaces
+  ios_config:
+    src: 'phy_l3_interfaces.j2'
+  register: pushed_config
+  notify: save_config
+
+- name: display_pushed_config
+  debug: var=pushed_config.updates
+  when: pushed_config.changed
+
+

@@ -1,0 +1,47 @@
+all:
+  vars:
+    ansible_connection: network_cli #the type of connection to make with the device.
+    ansible_network_os: ios #what platform is the device
+    ansible_become: no #if we want to force ourselves into privilege mode
+    ansible_user: admin #what username to use to connect to device
+    ansible_password: cisco #what password to use to connect to device
+
+  children:
+
+    hub1:
+      hosts:
+        H1-R1:
+          ansible_host: 172.16.147.201
+        H1-R2:
+          ansible_host: 172.16.147.202
+
+    spoke2:
+      hosts:
+        S2-R1:
+          ansible_host: 172.16.147.203
+        S2-R2:
+          ansible_host: 172.16.147.204
+
+    spoke3:
+      hosts:
+        S3-R1:
+          ansible_host: 172.16.147.205
+        S3-R2:
+          ansible_host: 172.16.147.206
+
+    primary_routers:
+      hosts:
+        H1-R1:
+        S2-R1:
+        S3-R1:
+
+    secondary_routers:
+      hosts:
+        H1-R2:
+        S2-R2:
+        S3-R2:
+
+    spoke-routers:
+      children:
+        spoke2:
+        spoke3:

@@ -1,0 +1,99 @@
+- name: testing ios_commands module
+  hosts: all
+
+  tasks:
+
+    - name: run show command
+      ios_command: #to run show commands on the device
+        commands: #list of commands
+          - show ip int b
+      register: show_result
+
+    - name: debug show command
+      debug: var=show_result.stdout_lines
+
+- name: testing ios_facts module
+  hosts: SPOKE2
+
+  tasks:
+
+    - name: gather facts
+      ios_facts: #to gather information about the device all the information will be saved as variable of the host
+        gather_subset: all
+      register: ios_facts_result
+
+    - name: debug gathered facts
+      debug: var=ansible_net_serialnum
+
+    - name: save facts to file
+      copy: #to save the facts to a file, source is the var is jinja format using jinja filter to_nice_json and destination is the file specified
+        content: "{{ ios_facts_result | to_nice_json }}"
+        dest: "all_facts/{{inventory_hostname}}_facts.json"
+
+- name: testing ios_config module
+  hosts: all
+
+  tasks:
+
+    - name: testing lines parameter
+      ios_config:
+        lines: #runs the below mentioned commands in global config mode
+          - no ip domain lookup
+
+    - name: testing parent parameter
+      ios_config:
+        parents: #to specify hierarchy where the command is to be configured, if there are multiple levels, mention them in order.
+          - line vty 0 4
+        lines:
+          - exec-timeout 0 0
+
+    - name: testing displaying changed config
+      ios_config:
+        parents:
+          - line vty 0 4
+        lines:
+          - transport input ssh
+      register: changed_config
+
+    - name: displaying only changed_config
+      debug: var=changed_config.updates #displays to config change made
+      when: changed_config.changed #when we have made any config change on the device
+
+
+    - name: testing backup parameter
+      ios_config:
+        lines:
+          - no ip domain lookup
+        backup: yes #backups your configuration before change, it will not check if there is really any change to be made or not.
+
+    - name: testing after parameter
+      ios_config:
+        lines:
+          - service password-encryption
+        after: #these commands are executed only if changes are made with the above commands,
+          - end #they are executed regardless they are in the config or not.
+          - do write
+
+    - name: testing before parameter
+      ios_config:
+        # the before parameter is only executed if the lines command will make any changes to the config
+        # the before command is never compared and always executed before the line commands.
+        before:
+          - no ip access-list extended test
+        parents:
+          - ip access-list extended test
+        lines:
+          - permit ip host 1.1.1.2 host 2.2.2.2
+
+    - name: testing match parameter
+      ios_config:
+        before:
+          - no ip access-list extended test1
+        parents:
+          - ip access-list extended test1
+        lines:
+          - permit ip any any
+          - permit ip host 1.1.1.1 host 2.2.2.2
+        #to match the above list in the exact order with no extra lines, default is line which on checks for missing lines
+        #other options are strict and none.
+        match: exact

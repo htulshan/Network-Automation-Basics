@@ -1,0 +1,34 @@
+L3_interfaces:
+  - interface_type: Ethernet
+    interface_id: 0/0
+    description: ISP
+    ip_address: 155.1.57.1
+    mask: 255.255.255.252
+  - interface_type: Ethernet
+    interface_id: 0/1
+    description: Router to Router link
+    ip_address: 172.16.3.1
+    mask: 255.255.255.252
+  - interface_type: Ethernet
+    interface_id: 0/2
+    description: MGMT
+    ip_address: 10.3.1.2
+    mask: 255.255.255.0
+  - interface_type: Ethernet
+    interface_id: 0/2.10
+    encapsulation: 10
+    description: Guest
+    ip_address: 10.3.10.2
+    mask: 255.255.255.0
+  - interface_type: Ethernet
+    interface_id: 0/2.20
+    encapsulation: 20
+    description: data
+    ip_address: 10.3.20.2
+    mask: 255.255.255.0
+  - interface_type: Ethernet
+    interface_id: 0/2.30
+    encapsulation: 30
+    description: voice
+    ip_address: 10.3.30.2
+    mask: 255.255.255.0

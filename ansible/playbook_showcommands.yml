@@ -1,0 +1,32 @@
+- name: show run commands and save to file
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: run commands on cli
+      ios_command:
+        commands:
+          - show ip int b | ex unass
+          #- show log
+          #- show process cpu
+          #- dir
+      register: show_output
+
+    - name: creating files
+      #to create a new file if the file does not exist
+      file:
+        state: touch
+        path: "./show_outputs/{{ inventory_hostname }}_output.txt"
+
+
+    - name: saving output to file
+      #to not log the output to the terminal since with_items is verbose
+      no_log: True
+      #to append to an existing file
+      lineinfile:
+        line: "\n\n{{ item }}"
+        path: "./show_outputs/{{ inventory_hostname }}_output.txt"
+      #to loop over the list
+      with_items:
+        - "{{ show_output.stdout }}"

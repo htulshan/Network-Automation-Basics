@@ -1,0 +1,22 @@
+- name: backup configuration
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: backup
+      ios_config:
+        backup: yes
+
+- name: configure l3 interfaces on hub
+  hosts: hub1
+  gather_facts: false
+
+  roles:
+    - configure_L3_interfaces
+
+- name: configure l3 interfaces on spokes
+  hosts: spoke-routers
+  gather_facts: false
+
+  roles:
+    - configure_L3_interfaces
