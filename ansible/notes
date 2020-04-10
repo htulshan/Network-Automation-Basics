@@ -1,0 +1,9 @@
+- configure L3 physical interface.
+- configure L2 switches for vlans.
+- configure ISP for routing.
+- configure default route on routers.
+- configure HSRP on routers
+- configure DMVPN on routers
+- configure EIGRP inside DMVPN
+- configure IP SLA for HSRP failover
+- configure NAT

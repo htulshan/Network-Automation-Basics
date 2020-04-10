@@ -41,7 +41,7 @@ all:
         S2-R2:
         S3-R2:
 
-    spoke-routers:
+    spoke_routers:
       children:
         spoke2:
         spoke3:

@@ -32,3 +32,14 @@ L3_interfaces:
     description: voice
     ip_address: 10.3.30.3
     mask: 255.255.255.0
+static_routes:
+  - subnet: 0.0.0.0
+    mask: 0.0.0.0
+    next_hop_ip: 155.1.68.2
+ip_slas:
+  - number: 1
+    tracked_ip: 155.1.68.2
+    frequency: 3000
+    timeout: 2000
+    threshold: 1000
+    track_number: 1

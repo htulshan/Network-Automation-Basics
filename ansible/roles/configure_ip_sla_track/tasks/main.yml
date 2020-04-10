@@ -1,0 +1,9 @@
+- name: configure_ip_sla_track
+  ios_config:
+    src: "ip_sla_track.j2"
+  register: pushed_config
+  notify: save_config
+
+- name: display_ip_sla_pushed_config
+  debug: var=pushed_config.updates
+  when: pushed_config.changed

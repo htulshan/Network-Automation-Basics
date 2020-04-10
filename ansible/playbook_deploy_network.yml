@@ -15,8 +15,23 @@
     - configure_L3_interfaces
 
 - name: configure l3 interfaces on spokes
-  hosts: spoke-routers
+  hosts: spoke_routers
   gather_facts: false
 
   roles:
     - configure_L3_interfaces
+
+
+- name: configure static routes on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_static_routes
+
+- name: configure IP SLA on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_ip_sla_track

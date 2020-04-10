@@ -1,0 +1,12 @@
+{%- for ip_sla in ip_slas -%}
+ip sla {{ ip_sla.number }}
+ icmp-echo {{ ip_sla.tracked_ip }}
+ frequency {{ ip_sla.frequency }}
+ threshold {{ ip_sla.threshold }}
+ timeout {{ ip_sla.timeout }}
+
+
+ip sla schedule {{ ip_sla.number }} life forever start-time now
+
+track {{ ip_sla.track_number }} ip sla {{ ip_sla.number }} reachability
+{% endfor %}

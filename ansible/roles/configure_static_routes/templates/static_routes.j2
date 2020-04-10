@@ -1,0 +1,7 @@
+{%- for route in static_routes -%}
+{% if route.ad is defined %}
+ip route {{ route.subnet }} {{ route.mask }} {{ route.next_hop_ip }} {{ route.ad }}
+{% else %}
+ip route {{ route.subnet }} {{ route.mask }} {{ route.next_hop_ip }}
+{% endif %}
+{% endfor %}

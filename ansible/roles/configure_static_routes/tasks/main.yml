@@ -1,0 +1,11 @@
+- name: configure_static_routes
+  ios_config:
+    src: "static_routes.j2"
+  register: pushed_config
+  notify: save_config
+
+- name: display_pushed_config
+  debug: var=pushed_config.updates
+  when: pushed_config.changed
+
+
