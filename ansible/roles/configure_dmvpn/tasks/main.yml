@@ -1,0 +1,7 @@
+- name: configure DMVPN on spokes
+  include_tasks: dmvpn_spokes.yml
+  when: DMVPN.type == 'spoke'
+
+- name: configure DMVPN on hub
+  include_tasks: dmvpn_hub.yml
+  when: DMVPN.type == 'hub'

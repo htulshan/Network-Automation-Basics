@@ -1,0 +1,9 @@
+- name: configure DMVPN on spokes
+  ios_config:
+    src: dmvpn_spoke.j2
+  register: pushed_config_dmvpn_spoke
+  notify: save_config
+
+- name: display pushed config
+  debug: var=pushed_config_dmvpn_spoke.updates
+  when: pushed_config_dmvpn_spoke.changed

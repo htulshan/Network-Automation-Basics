@@ -1,0 +1,13 @@
+DMVPN:
+  type: spoke
+  interfaces:
+    - interface_id: Tunnel0
+      mtu: 1440
+      authentication: cisco123
+      hub:
+        overlay_ip: 172.17.2.1
+        underlay_ip: 155.1.28.1
+      network_id: 1
+      source_interface: Ethernet0/0
+      tunnel_key: 0
+      shortcut: no

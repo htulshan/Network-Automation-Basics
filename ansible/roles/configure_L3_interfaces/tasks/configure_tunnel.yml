@@ -1,0 +1,9 @@
+- name: configure_tunnel_interface
+  ios_config:
+    src: 'tunnel_interface.j2'
+  register: pushed_config_tunnel
+  notify: save_config
+
+- name: display_pushed_config_tunnel
+  debug: var=pushed_config_tunnel.updates
+  when: pushed_config_tunnel.changed

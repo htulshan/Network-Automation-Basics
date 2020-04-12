@@ -1,0 +1,17 @@
+{%- for interface in DMVPN.interfaces -%}
+interface {{ interface.interface_id }}
+ no ip redirects
+ ip mtu {{ interface.mtu }}
+ ip nhrp authentication {{ interface.authentication }}
+ ip nhrp map multicast dynamic
+ ip nhrp map {{ interface.hub.overlay_ip }} {{ interface.hub.underlay_ip }}
+ ip nhrp map multicast {{ interface.hub.underlay_ip }}
+ ip nhrp network-id {{ interface.network_id }}
+{% if interface.shortcut %}
+ ip nhrp shortcut
+{% endif %}
+ ip nhrp nhs {{ interface.hub.overlay_ip }}
+ tunnel source {{ interface.source_interface }}
+ tunnel mode gre multipoint
+ tunnel key {{ interface.tunnel_key }}
+{% endfor %}

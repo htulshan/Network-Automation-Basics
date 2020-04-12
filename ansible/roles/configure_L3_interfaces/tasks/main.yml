@@ -12,4 +12,9 @@
   debug: var=pushed_config.updates
   when: pushed_config.changed
 
+- name: configure_tunnel_interface
+  include_tasks: configure_tunnel.yml
+  when: tunnel_interfaces is defined
+
+
 

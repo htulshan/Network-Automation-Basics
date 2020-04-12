@@ -1,0 +1,33 @@
+- name: configure NTP
+  hosts: S2-R1
+  gather_facts: false
+
+  tasks:
+
+    - name: check_config
+      ios_command:
+        commands:
+          - show run | i ntp server 2.2.2.2
+      register: show_output
+
+    - name: output
+      debug: var=show_output.stdout_lines
+
+    - name: remove_config
+      ios_config:
+        lines: no ntp server 2.2.2.2
+      when: "'ntp server 2.2.2.2' in show_output.stdout"
+
+    - name: configure_ntp
+      ios_config:
+        lines:
+          - ntp server 1.1.1.1
+
+    - name: result
+      ios_command:
+        commands:
+          - show run | i ntp server
+      register: result
+
+    - name: final_result
+      debug: var=result.stdout_lines

@@ -1,0 +1,19 @@
+- name: remove tunnel interface
+  hosts: spoke_routers
+
+
+  tasks:
+
+    - name: remove
+      ios_config:
+        lines:
+          - no interface tunnel0
+      register: show
+
+    - name: show
+      debug: var=show.updates
+
+    - name: save
+      ios_command:
+        commands:
+          - write

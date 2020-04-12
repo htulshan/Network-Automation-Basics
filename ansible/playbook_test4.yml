@@ -1,0 +1,6 @@
+- name: configure EIGRP on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_eigrp

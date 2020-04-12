@@ -7,20 +7,12 @@
       ios_config:
         backup: yes
 
-- name: configure l3 interfaces on hub
-  hosts: hub1
-  gather_facts: false
-
-  roles:
-    - configure_L3_interfaces
-
 - name: configure l3 interfaces on spokes
   hosts: spoke_routers
   gather_facts: false
 
   roles:
     - configure_L3_interfaces
-
 
 - name: configure static routes on spokes
   hosts: spoke_routers
@@ -35,3 +27,31 @@
 
   roles:
     - configure_ip_sla_track
+
+- name: configure HSRP on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_hsrp
+
+- name: configure DMVPN on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_dmvpn
+
+- name: configure EIGRP on spokes
+  hosts: spoke_routers
+  gather_facts: false
+
+  roles:
+    - configure_eigrp
+
+- name: configure l3 interfaces on hub
+  hosts: hub1
+  gather_facts: false
+
+  roles:
+    - configure_L3_interfaces

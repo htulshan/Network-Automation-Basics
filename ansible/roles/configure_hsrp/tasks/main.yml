@@ -1,0 +1,9 @@
+- name: configure HSRP with track
+  ios_config:
+    src: "hsrp_with_track.j2"
+  register: pushed_config
+  notify: save_config
+
+- name: display_ip_sla_pushed_config
+  debug: var=pushed_config.updates
+  when: pushed_config.changed

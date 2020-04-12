@@ -7,7 +7,7 @@
     - name: run commands on cli
       ios_command:
         commands:
-          - show ip sla summary
+          - show ip eigrp nei
           #- show log
           #- show process cpu
           #- dir

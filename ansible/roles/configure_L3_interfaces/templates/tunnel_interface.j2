@@ -1,0 +1,4 @@
+{%- for interface in tunnel_interfaces -%}
+interface Tunnel{{ interface.id }}
+ ip address {{ interface.ip }} {{ interface.mask }}
+{% endfor %}

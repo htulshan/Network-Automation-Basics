@@ -41,6 +41,16 @@ all:
         S2-R2:
         S3-R2:
 
+    primary_spoke_routers:
+      hosts:
+        S2-R1:
+        S3-R1:
+
+    secondary_spoke_routers:
+      hosts:
+        S2-R2:
+        S3-R2:
+
     spoke_routers:
       children:
         spoke2:
